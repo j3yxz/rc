@@ -1,3 +1,15 @@
+set smarttab
+
+
+set scrolloff=1
+set wrap
+set laststatus=2
+set title
+
+set backupdir=~/.cache/vim
+
+set formatoptions+=j
+set clipboard=unnamed
 if has('filetype')
 	filetype indent plugin on
 endif
