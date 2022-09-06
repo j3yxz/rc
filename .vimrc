@@ -7,7 +7,7 @@ if has('syntax')
 endif
 
 set hidden
-
+set clipboard+=unnamed+
 set wildmenu
 
 set hlsearch
@@ -39,9 +39,12 @@ set listchars=tab:>-,trail:-
 set incsearch
 
 inoremap <c-B> <Esc>:Lex<cr>:vertical resize 30<cr>
-nnoremap <c-B> <Esc>:Lex<cr>:vertical resize 30<cr>
 
 inoremap qq <Esc>
 nnoremap ds :exec '%s/'.getline('.')[col('.')-1].'//'
-":#set so=r3"l:ill: line just to test stuff"
+"this is fine"
+vnoremap <c-C> :w !xclip -i -selection clipboard<cr><cr>
+"this is not fine but it works"
+nnoremap <c-C> pV :w !xclip -i -selection clipboard<cr><cr> dd
+":#set so=r3"lill"
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
