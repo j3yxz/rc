@@ -1,12 +1,12 @@
 #!/bin/bash
-if [ $# -gt 0 ]; then
+if [[ $# = 0 ]]; then
     echo "Usage: ./install.sh <choice>"
     echo 'choice is one of the following: "vimrc", "zshrc", "all".'
-    exit 1
     read -p "Which configuration file(s) would you like to install? (vimrc/zshrc/both): " choice
 else
     choice=$1
 fi
+
 
 if [[ $choice == "vimrc" ]]; then
     echo "Installing .vimrc..."
