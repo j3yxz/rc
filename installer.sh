@@ -1,4 +1,7 @@
 #!/bin/bash
+
+RC_DIR=$(echo $0 | sed -E 's/installer.sh//')
+
 if [[ $# = 0 ]]; then
     echo "Usage: ./install.sh <choice>"
     echo 'choice is one of the following: "vimrc", "zshrc", "all".'
