@@ -1,4 +1,8 @@
 #!/bin/bash
+
+RC_DIR=$(echo $0 | sed -E 's/installer.sh//')
+echo $RC_DIR
+
 if [[ $# = 0 ]]; then
     echo "Usage: ./install.sh <choice>"
     echo 'choice is one of the following: "vimrc", "zshrc", "all".'
@@ -18,8 +22,9 @@ if [[ $choice == "vimrc" ]]; then
     fi
     # check if .vimrc is present
     vimrc_files=$(vim --version | grep "user vimrc file" | sed -E 's/.*: "(.*)"/\1/' )
+	echo "Checking for " $vimrc_files
     for name in $vimrc_files; do
-        name=$(echo $(eval "echo $name"))
+	    name=$(echo $(eval "echo $name"))
         if [[ -f $name ]]; then
             echo "Vimrc file found at " $name
             echo "Importing .vimrc into " $name, backup as $name.bak
@@ -28,11 +33,11 @@ if [[ $choice == "vimrc" ]]; then
             echo "Done."
             vimrc_primary=$name
             break
-        fi
+	fi
     done
     if [[ -z $vimrc_primary ]]; then
         vimrc_primary=$(echo $vimrc_files | cut -d' ' -f1)
-        echo "Vimrc file not found. Creating importing \".vimrc\" into " $(echo $vimrc_file | awk '{print $1}' )
+	echo "Vimrc file not found. Creating importing \".vimrc\" into" $(echo $vimrc_files | awk '{print $1}')
         cp .vimrc ~/
     fi
     
