@@ -25,8 +25,8 @@ if [[ $choice == "vimrc" ]]; then
         name=$(echo $(eval "echo $name"))
         if [[ -f $name ]]; then
             echo "Vimrc file found at " $name
-            echo "Importing .vimrc into " $name, backup as $name.bak
-            mv $name $name.bak
+            echo "Importing .vimrc into " $name, backup as $RC_DIR$name.bak
+            mv $name $RC_DIR$name.bak
             cat .vimrc >> $name
             echo "Done."
             vimrc_primary=$name
