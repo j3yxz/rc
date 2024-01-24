@@ -35,8 +35,10 @@ if [[ $choice == "vimrc" ]]; then
     done
     if [[ -z $vimrc_primary ]]; then
         vimrc_primary=$(echo $vimrc_files | cut -d' ' -f1)
-        echo "Vimrc file not found. Creating importing \".vimrc\" into " $(echo $vimrc_file | awk '{print $1}' )
-        cp .vimrc ~/
+        vimrc_primary_dir = $(echo $vimrc_primary | sed -E s'/.vimrc//')
+        vim_primary_dir = $(eval "echo $vim_primary_dir")
+        echo "Vimrc file not found. Creating importing \".vimrc\" into " $vim_primary_dir
+        cp .vimrc $vim_primary_dir
     fi
     
 elif [[ $choice == "zshrc" ]]; then
